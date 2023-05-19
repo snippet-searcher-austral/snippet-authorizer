@@ -21,7 +21,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: snippet-searcher-austral
+          username: matiaslcoulougian
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to GitHub Packages
@@ -31,4 +31,4 @@ jobs:
           file: Dockerfile_dev
           push: true
           tags: |
-            ghcr.io/snippet-searcher-austral/authorizer-dev-echo:${{ steps.short-sha.outputs.sha }}
+            ghcr.io/snippet-searcher-austral/authorizer-dev:${{ steps.short-sha.outputs.sha }}
