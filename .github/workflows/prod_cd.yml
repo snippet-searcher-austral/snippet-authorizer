@@ -28,8 +28,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v4
         with:
-          context: .
-          file: ./Dockerfile_prod
+          file: Dockerfile_prod
           push: true
           tags: |
             ghcr.io/snippet-searcher-austral/authorizer-prod-echo:${{ steps.short-sha.outputs.sha }}
