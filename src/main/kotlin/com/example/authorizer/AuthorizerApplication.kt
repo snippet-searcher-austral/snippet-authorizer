@@ -14,7 +14,8 @@ fun main(args: Array<String>) {
 }
 
 @RestController
-class MessageController {
+class AuthorizationController {
     @GetMapping("/")
     fun index(@RequestParam("name") name: String) = "Hello, $name!"
 }
+

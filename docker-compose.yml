@@ -2,10 +2,10 @@ version: '3'
 
 services:
   api:
-    container_name: "compose-api"
+    container_name: "authorizer-api"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile_dev
     ports:
       - 8080:8080
     environment:
@@ -29,3 +29,4 @@ services:
 
 volumes:
   pgdata:
+    external: true
