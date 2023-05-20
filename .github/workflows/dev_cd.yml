@@ -8,12 +8,6 @@ jobs:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
-      - name: Create Short SHA
-        uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 8
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -31,4 +25,29 @@ jobs:
           file: Dockerfile_dev
           push: true
           tags: |
-            ghcr.io/snippet-searcher-austral/authorizer-dev:${{ steps.short-sha.outputs.sha }}
+            ghcr.io/snippet-searcher-austral/authorizer-dev:latest
+            
+  deploy:
+    needs: publish-dev-image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 400 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.DEV_SSH_PRIVATE}}
+          SSH_KNOWN_HOSTS: ${{secrets.DEV_SSH_KNOWN_HOSTS}}
+
+      - name: Connect via SSH and deploy
+        run: |
+          ssh -i $SSH_KEY_PATH matito@${{secrets.DEV_SSH_HOST}} 'sudo ~/deploy-service.sh authorizer'
+        env:
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+
+
+            
