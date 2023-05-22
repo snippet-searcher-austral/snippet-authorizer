@@ -4,8 +4,8 @@ on:
     branches:
       - development
 jobs:
-  push_to_registry:
-    name: Push Docker image to GitHub Packages
+  publish-dev-image:
+    name: Push Dev Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
@@ -45,7 +45,7 @@ jobs:
 
       - name: Connect via SSH and deploy
         run: |
-          ssh -i $SSH_KEY_PATH matito@${{secrets.DEV_SSH_HOST}} 'sudo ~/deploy-service.sh authorizer'
+          ssh -i $SSH_KEY_PATH matito@${{secrets.DEV_SSH_HOST}} 'sudo ~/deploy-service.sh authorizer-api'
         env:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
 
