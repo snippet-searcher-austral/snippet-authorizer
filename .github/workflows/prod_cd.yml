@@ -4,16 +4,10 @@ on:
     branches:
       - master
 jobs:
-  push_to_registry:
-    name: Push Docker image to GitHub Packages
+  publish-prod-image:
+    name: Push Dev Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
-      - name: Create Short SHA
-        uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 8
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -31,4 +25,4 @@ jobs:
           file: Dockerfile_prod
           push: true
           tags: |
-            ghcr.io/snippet-searcher-austral/authorizer-prod:${{ steps.short-sha.outputs.sha }}
+            ghcr.io/snippet-searcher-austral/authorizer-prod:latest
