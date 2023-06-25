@@ -46,7 +46,7 @@ jobs:
       - name: Connect via SSH and deploy
         run: |
           ssh -i $SSH_KEY_PATH matito@${{secrets.DEV_SSH_HOST}} "sudo bash -s" <<EOF
-            bash deploy-script.sh "${{ secrets.GHCR_TOKEN }}"
+            bash deploy-script.sh "${{ secrets.GHCR_TOKEN }}" "authorizer-api"
           EOF
         env:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key

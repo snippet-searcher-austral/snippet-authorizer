@@ -16,6 +16,6 @@ fun main(args: Array<String>) {
 @RestController
 class AuthorizationController {
     @GetMapping("/")
-    fun index(@RequestParam("name") name: String) = "Hello, $name!"
+    fun index(@RequestParam("name") name: String) = "Hello, $name!, this is a test!"
 }
 
