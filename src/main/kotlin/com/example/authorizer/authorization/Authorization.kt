@@ -1,4 +1,4 @@
-package com.example.authorizer.model
+package com.example.authorizer.authorization
 
 import jakarta.persistence.*
 
