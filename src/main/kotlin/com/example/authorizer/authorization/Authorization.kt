@@ -1,20 +1,27 @@
 package com.example.authorizer.authorization
 
 import jakarta.persistence.*
+import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import java.time.LocalDateTime
+import java.util.*
 
 @Entity
+@EntityListeners(AuditingEntityListener::class)
 data class Authorization(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    @Id @GeneratedValue
+    val id: UUID? = null,
 
-    val userId: String,
+    @Column(nullable = false)
+    val userId: String = "",
 
     @Enumerated(EnumType.STRING)
-    val access: AccessType
-) {
-    constructor() : this(0, "", AccessType.READ)
-}
+    @Column(nullable = false)
+    val access: AccessType = AccessType.READ,
+
+    @Column(nullable = false)
+    private val snippetId: String = "",
+)
 
 enum class AccessType {
     READ, WRITE, DELETE

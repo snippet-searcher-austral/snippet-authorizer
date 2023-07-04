@@ -27,8 +27,8 @@ class SecurityConfig(
     fun securityWebFilterChain(serverSecurity: ServerHttpSecurity): SecurityWebFilterChain = serverSecurity
         .authorizeExchange {
             it
-                .pathMatchers("/health/*").permitAll()
-                .pathMatchers("/authorization/*").authenticated()
+                .pathMatchers("/").permitAll()
+                .pathMatchers("/new").authenticated()
                 .anyExchange().denyAll()
         }
         .oauth2ResourceServer { it.jwt(withDefaults()) }
