@@ -1,6 +1,6 @@
 package com.example.authorizer
 
-import com.example.authorizer.authorization.Authorization
+import com.example.authorizer.authorization.AccessAuth
 import com.example.authorizer.authorization.AuthorizationService
 import com.example.authorizer.authorization.dto.CreateAuthorizationDTO
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -21,7 +21,7 @@ class AuthorizationController(private val authorizationService: AuthorizationSer
     @GetMapping("/")
     fun index(): String = "Hello. This is a health test!"
     @PostMapping("/new")
-    suspend fun createAuthorization(@RequestBody authorizationDTO: CreateAuthorizationDTO): Authorization {
+    suspend fun createAuthorization(@RequestBody authorizationDTO: CreateAuthorizationDTO): AccessAuth {
         return authorizationService.createAuthorization(authorizationDTO)
     }
 

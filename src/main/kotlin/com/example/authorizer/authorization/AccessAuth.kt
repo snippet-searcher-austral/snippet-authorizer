@@ -1,14 +1,12 @@
 package com.example.authorizer.authorization
 
 import jakarta.persistence.*
-import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
-import java.time.LocalDateTime
 import java.util.*
 
 @Entity
 @EntityListeners(AuditingEntityListener::class)
-data class Authorization(
+data class AccessAuth(
     @Id @GeneratedValue
     val id: UUID? = null,
 

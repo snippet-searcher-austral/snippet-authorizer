@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface AuthorizationRepository: JpaRepository<Authorization, UUID> {
-    fun findByUserId(userId: String): List<Authorization>
+interface AuthorizationRepository: JpaRepository<AccessAuth, UUID> {
+    fun findByUserId(userId: String): List<AccessAuth>
 
 }

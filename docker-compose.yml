@@ -9,15 +9,15 @@ services:
 #    ports:
 #      - 8080:8080
 #    env_file:
-#      .env_api
+#      api.env
 
   db:
-    container_name: "authorizer-db"
+    container_name: "authorizer_db"
     image: postgres:12
     ports:
       - 5432:5432
     env_file:
-      - .env_db
+      - db.env
     volumes:
       - pgdata:/var/lib/postgresql/data
 
