@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-#  api:
-#    container_name: "authorizer-api"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile_dev
-#    ports:
-#      - 8080:8080
-#    env_file:
-#      api.env
+  api:
+    container_name: "authorizer-api"
+    build:
+      context: .
+      dockerfile: Dockerfile_dev
+    ports:
+      - 8080:8080
+    env_file:
+      api.env
 
   db:
     container_name: "authorizer_db"
