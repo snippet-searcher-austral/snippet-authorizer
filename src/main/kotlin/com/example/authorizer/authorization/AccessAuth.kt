@@ -5,6 +5,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.util.*
 
 @Entity
+@Table(
+    name = "access_auth",
+    uniqueConstraints = [UniqueConstraint(columnNames = ["access", "snippetId", "userId"])]
+)
 @EntityListeners(AuditingEntityListener::class)
 data class AccessAuth(
     @Id @GeneratedValue

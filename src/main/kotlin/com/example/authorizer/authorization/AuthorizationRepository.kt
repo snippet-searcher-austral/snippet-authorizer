@@ -8,4 +8,6 @@ import java.util.UUID
 interface AuthorizationRepository: JpaRepository<AccessAuth, UUID> {
     fun findByUserId(userId: String): List<AccessAuth>
 
+    fun existsAccessAuthByUserIdAndAccessAndSnippetId(userId: String, accessType: AccessType, snippetId: String): Boolean
+
 }

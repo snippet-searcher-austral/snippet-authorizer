@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.6.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.json:json:20211205'
 }
 
 jar {

@@ -29,6 +29,8 @@ class SecurityConfig(
             it
                 .pathMatchers("/").permitAll()
                 .pathMatchers("/new").authenticated()
+                .pathMatchers("/isAuthorized").authenticated()
+                .pathMatchers("/me").authenticated()
                 .anyExchange().denyAll()
         }
         .oauth2ResourceServer { it.jwt(withDefaults()) }
