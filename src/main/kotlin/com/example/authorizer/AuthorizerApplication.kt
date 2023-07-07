@@ -24,6 +24,7 @@ class AuthorizationController(private val authorizationService: AuthorizationSer
 
     @GetMapping("/")
     fun index(): String = "Hello. This is a health test!"
+
     @PostMapping("/new")
     suspend fun createAuthorization(@RequestBody authorizationDTO: CreateAuthorizationDTO, authentication: Authentication, @RequestHeader("Authorization") authorizationHeader: String): AccessAuth {
         val auth0Id: String = (authentication.principal as Jwt).subject
@@ -36,7 +37,7 @@ class AuthorizationController(private val authorizationService: AuthorizationSer
         return authorizationService.getAllUserAuthorizations(auth0Id)
     }
 
-    @GetMapping("/isAuthorized")
+    @PostMapping("/isAuthorized")
     suspend fun checkAuthorizationExists(@RequestBody authorizationDTO: CreateAuthorizationDTO): Boolean {
         return authorizationService.authorizationExists(authorizationDTO)
     }

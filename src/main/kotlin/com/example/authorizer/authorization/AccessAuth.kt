@@ -22,7 +22,7 @@ data class AccessAuth(
     val access: AccessType = AccessType.READ,
 
     @Column(nullable = false)
-    private val snippetId: String = "",
+    val snippetId: String = "",
 )
 
 enum class AccessType {
