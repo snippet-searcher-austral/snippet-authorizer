@@ -1,16 +1,12 @@
 package com.example.authorizer.authorization
 
 import com.example.authorizer.authorization.dto.CreateAuthorizationDTO
-import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.ResponseStatus
 import java.net.HttpURLConnection
 import java.net.URL
-
-@Value("\${SNIPPET_MANAGER_URL:http://localhost:8081/snippet/")
-const val baseUrl: String = "http://localhost:8081/snippet/"
 
 data class Snippet(val content: String, val userId: String)
 
@@ -19,6 +15,9 @@ class ForbiddenException(message: String) : RuntimeException(message)
 
 @Service
 class AuthorizationService(private val authorizationRepository: AuthorizationRepository) {
+
+    @Value("\${snippet-manager.url}")
+    private lateinit var baseUrl: String
 
     private fun getSnippetOwner(snippetId: String, bearerToken: String): String {
         val url = URL("$baseUrl$snippetId/owner")
