@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   publish-prod-image:
-    name: Push Dev Docker image to GitHub Packages
+    name: Push Prod Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
