@@ -16,8 +16,7 @@ class ForbiddenException(message: String) : RuntimeException(message)
 @Service
 class AuthorizationService(private val authorizationRepository: AuthorizationRepository) {
 
-    @Value("\${snippet-manager.url}")
-    private lateinit var baseUrl: String
+    private var baseUrl = System.getenv("SNIPPET_MANAGER_URL")
 
     private fun getSnippetOwner(snippetId: String, bearerToken: String): String {
         val url = URL("$baseUrl$snippetId/owner")
